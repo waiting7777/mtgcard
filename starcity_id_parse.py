@@ -17,10 +17,10 @@ if sys.argv[1] not in card_set:
 	print(card_set)
 	exit()
 
-w = codecs.open('starcity/kld/cardid.csv', 'w', 'utf8')
-w.write('CardName, StarCardId\n')
-
 set = sys.argv[1]
+
+w = codecs.open('starcity/%s/cardid.csv'%set, 'w', 'utf8')
+w.write('CardName, StarCardId\n')
 
 dic = {}
 
