@@ -56,7 +56,7 @@ with open('starcity/%s/cardid.csv'%set, newline='') as csvfile:
 		print(row_temp, temp['cart_total'])
 		if(temp['cart_total'] == None):
 			temp['cart_total'] = '-'
-		w.write(row_temp[0] + ', ' + row_temp[1] + ', ' + temp['cart_total'] + '\n')
+		w.write(row_temp[0] + ', ' + temp['cart_total'] + '\n')
 		time.sleep(3)
 
 
