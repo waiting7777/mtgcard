@@ -22,6 +22,12 @@ if sys.argv[1] not in card_set:
 
 set = sys.argv[1]
 
+if os.path.exists("starcity") == False:
+    os.mkdir("starcity")
+
+if os.path.exists("starcity/%s"%(set)) == False:
+    os.mkdir("starcity/%s"%(set))
+
 for rarity in star_city_rarity:
 
 	for i in range(star_city_page[set][rarity]):

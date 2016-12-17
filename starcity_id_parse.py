@@ -19,6 +19,12 @@ if sys.argv[1] not in card_set:
 
 set = sys.argv[1]
 
+if os.path.exists("starcity") == False:
+    os.mkdir("starcity")
+
+if os.path.exists("starcity/%s"%(set)) == False:
+    os.mkdir("starcity/%s"%(set))
+
 w = codecs.open('starcity/%s/cardid.csv'%set, 'w', 'utf8')
 w.write('CardName, StarCardId\n')
 
@@ -43,7 +49,3 @@ for rarity in star_city_rarity:
 for key in sorted(dic):
 	print(key, dic[key])
 	w.write(key + ', ' + dic[key] + '\n')
-
-
-	
-

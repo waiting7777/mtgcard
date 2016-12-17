@@ -26,6 +26,12 @@ url = 'http://sales.starcitygames.com/cart_bulk_ajax.php'
 
 set = sys.argv[1]
 
+if os.path.exists("dailyprice") == False:
+    os.mkdir("dailyprice")
+
+if os.path.exists("dailyprice/%s"%(set)) == False:
+    os.mkdir("dailyprice/%s"%(set))
+
 w = codecs.open('dailyprice/%s/%s.csv'%(set, date_string), 'w', 'utf8')
 
 first_flag = True
@@ -57,10 +63,4 @@ with open('starcity/%s/cardid.csv'%set, newline='') as csvfile:
 		if(temp['cart_total'] == None):
 			temp['cart_total'] = '-'
 		w.write(row_temp[0] + ', ' + temp['cart_total'] + '\n')
-		time.sleep(3)
-
-
-
-
-
-
+		time.sleep(2)
