@@ -16,7 +16,7 @@ star_city_page = {
 
 domain = 'http://magiccards.info'
 
-date_string = time.strftime("%Y_%m_%d")
+date_string = time.strftime("%Y-%m-%d")
 
 star_domain = 'http://sales.starcitygames.com/category.php'
 
