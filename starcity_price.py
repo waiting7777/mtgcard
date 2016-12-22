@@ -67,9 +67,11 @@ with open('starcity/%s/cardid.csv'%set, newline='') as csvfile:
 		print(row_temp, temp['cart_total'])
 		if(temp['cart_total'] == None):
 			temp['cart_total'] = '0'
-			no_price.push(row_temp[0])
+			no_price.append(row_temp[0])
 		w.write(row_temp[0] + ', ' + row_temp[1] + ', ' + row_temp[2] + ', ' + temp['cart_total'] + '\n')
 		print(no_price)
 		time.sleep(2)
 
-w.write('The card with no price :\n' + no_price)
+w.write('The card with no price :\n')
+for item in no_price:
+    w.write(item + ',')
