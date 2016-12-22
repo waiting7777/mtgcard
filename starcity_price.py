@@ -37,6 +37,8 @@ w.write('CardName, CardNumber, CardSet, CardPrice\n')
 
 first_flag = True
 
+no_price = []
+
 with open('starcity/%s/cardid.csv'%set, newline='') as csvfile:
 	spamreader = csv.reader(csvfile, delimiter=',', quotechar='|')
 	for row in spamreader:
@@ -46,6 +48,8 @@ with open('starcity/%s/cardid.csv'%set, newline='') as csvfile:
 		if len(row) == 5:
 			row_temp[0] = row[0] + row[1]
 			row_temp[1] = row[2]
+			row_temp[2] = row[3]
+			row_temp[3] = row[4]
 		else:
 			row_temp = row
 		data = {
@@ -63,5 +67,9 @@ with open('starcity/%s/cardid.csv'%set, newline='') as csvfile:
 		print(row_temp, temp['cart_total'])
 		if(temp['cart_total'] == None):
 			temp['cart_total'] = '0'
+			no_price.push(row_temp[0])
 		w.write(row_temp[0] + ', ' + row_temp[1] + ', ' + row_temp[2] + ', ' + temp['cart_total'] + '\n')
+		print(no_price)
 		time.sleep(2)
+
+w.write('The card with no price :\n' + no_price)
