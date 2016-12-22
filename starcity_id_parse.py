@@ -26,9 +26,25 @@ if os.path.exists("starcity/%s"%(set)) == False:
     os.mkdir("starcity/%s"%(set))
 
 w = codecs.open('starcity/%s/cardid.csv'%set, 'w', 'utf8')
-w.write('CardName, StarCardId\n')
+w.write('CardName, CardNumber, CardSet, StarCardId\n')
 
 dic = {}
+
+f = codecs.open('card_data/%s/en_all.html'%(set), 'r', 'utf8')
+
+content = f.read()
+
+soup = BeautifulSoup(content, 'html.parser')
+
+card_data = {}
+
+for item in soup.select('.even'):
+    card_data[item.select('a')[0].text] = item.select('td[align="right"]')[0].text
+
+for item in soup.select('.odd'):
+    card_data[item.select('a')[0].text] = item.select('td[align="right"]')[0].text
+
+print(card_data)
 
 for rarity in star_city_rarity:
 
@@ -47,5 +63,9 @@ for rarity in star_city_rarity:
 		f.close()
 
 for key in sorted(dic):
-	print(key, dic[key])
-	w.write(key + ', ' + dic[key] + '\n')
+    print(key, dic[key])
+    if key in card_data:
+        temp = card_data[key]
+    else:
+        temp = '==='
+    w.write(key + ', ' + temp + ', ' + set + ', ' + dic[key] + '\n')
