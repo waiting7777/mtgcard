@@ -33,7 +33,7 @@ if os.path.exists("dailyprice/%s"%(set)) == False:
     os.mkdir("dailyprice/%s"%(set))
 
 w = codecs.open('dailyprice/%s/%s.csv'%(set, date_string), 'w', 'utf8')
-w.write('CardName, CardNumber, CardSet, CardPrice\n')
+w.write('CardName, CardSet, CardPrice\n')
 
 first_flag = True
 
@@ -45,15 +45,14 @@ with open('starcity/%s/cardid.csv'%set, newline='') as csvfile:
 		if first_flag == True:
 			first_flag = False
 			continue
-		if len(row) == 5:
+		if len(row) == 4:
 			row_temp[0] = row[0] + row[1]
 			row_temp[1] = row[2]
 			row_temp[2] = row[3]
-			row_temp[3] = row[4]
 		else:
 			row_temp = row
 		data = {
-			'cart_productids[]' : int(row_temp[3]),
+			'cart_productids[]' : int(row_temp[2]),
 			'cart_qtys[]' : 1,
 			'mode' : 'login'
 		}
