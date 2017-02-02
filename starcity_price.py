@@ -37,6 +37,8 @@ w.write('CardName, CardSet, CardPrice\n')
 
 first_flag = True
 
+count = 1
+
 no_price = []
 
 with open('starcity/%s/cardid.csv'%set, newline='') as csvfile:
@@ -63,12 +65,13 @@ with open('starcity/%s/cardid.csv'%set, newline='') as csvfile:
 		f = urllib.request.urlopen(req)
 
 		temp = json.loads(f.read().decode('utf8'))
-		print(row_temp, temp['cart_total'])
+		print('#%d'%count, row_temp, temp['cart_total'])
 		if(temp['cart_total'] == None):
 			temp['cart_total'] = '0'
 			no_price.append(row_temp[0])
 		w.write(row_temp[0] + ', ' + row_temp[1] + ', ' + row_temp[2] + ', ' + temp['cart_total'] + '\n')
 		print(no_price)
+		count += 1
 		time.sleep(2)
 
 w.write('The card with no price :\n')
